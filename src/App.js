@@ -9,12 +9,12 @@ const notion = new Client({ auth: process.env.NOTION_KEY });
 const databaseId = process.env.NOTION_DATABASE_ID;
 
 function App() {
-  const [userChat, setUserChat] = useState(null);
-  const [userChat2, setUserChat2] = useState(null);
-  const [botChat, setBotChat] = useState(null);
-  const [botChat2, setBotChat2] = useState(null);
-  const [moodScore, setMoodScore] = useState(null);
-  const [rightScore, setRightScore] = useState(null);
+  const [userChat, setUserChat] = useState("hello");
+  const [userChat2, setUserChat2] = useState("hello");
+  const [botChat, setBotChat] = useState("hello");
+  const [botChat2, setBotChat2] = useState("hello");
+  const [moodScore, setMoodScore] = useState("hello");
+  const [rightScore, setRightScore] = useState("hello");
 
   const additem = async () => {
     const response = await notion.pages.create({
