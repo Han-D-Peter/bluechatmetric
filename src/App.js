@@ -115,8 +115,7 @@ function App() {
 
   const firstUserChatSubmit = async event => {
     event.preventDefault();
-    const url =
-      "http://ec2-54-180-203-163.ap-northeast-2.compute.amazonaws.com/AI/sendMessage/";
+    const url = "/api";
     try {
       const { data } = await axios.post(url, {
         headers: {
@@ -136,8 +135,7 @@ function App() {
 
   const secondUserChatSubmit = async event => {
     event.preventDefault();
-    const url =
-      "http://ec2-54-180-203-163.ap-northeast-2.compute.amazonaws.com/AI/sendMessage/";
+    const url = "/api";
     try {
       const { data } = await axios.post(url, {
         headers: {
