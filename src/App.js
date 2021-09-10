@@ -117,13 +117,24 @@ function App() {
     event.preventDefault();
     const url = "/api";
     try {
-      const { data } = await axios.post(url, {
+      let comment;
+      const { data } = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({ msg: userChat }),
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Contorl-Allow-Origin": "*",
+        },
+      })
+        .then(response => response.json())
+        .then(response => (comment = response));
+      /* const { data } = await axios.post(url, {
         headers: {
           "Access-Contorl-Allow-Origin": "*",
         },
         msg: userChat,
-      });
-      setBotChat(data[2]);
+      }); */
+      setBotChat(comment[2]);
     } catch (e) {
       console.log(e);
     }
