@@ -106,8 +106,8 @@ function App() {
   const [userChat2, setUserChat2] = useState("null");
   const [botChat, setBotChat] = useState("null");
   const [botChat2, setBotChat2] = useState("null");
-  const [moodScore, setMoodScore] = useState("null");
-  const [rightScore, setRightScore] = useState("null");
+  const [moodScore, setMoodScore] = useState(1);
+  const [rightScore, setRightScore] = useState(1);
 
   const firstUserChatChange = ({ target: { value } }) => {
     setUserChat(value);
