@@ -102,12 +102,12 @@ const ButtonBox = styled.div`
 `;
 
 function App() {
-  const [userChat, setUserChat] = useState(null);
-  const [userChat2, setUserChat2] = useState(null);
-  const [botChat, setBotChat] = useState(null);
-  const [botChat2, setBotChat2] = useState(null);
-  const [moodScore, setMoodScore] = useState(null);
-  const [rightScore, setRightScore] = useState(null);
+  const [userChat, setUserChat] = useState("null");
+  const [userChat2, setUserChat2] = useState("null");
+  const [botChat, setBotChat] = useState("null");
+  const [botChat2, setBotChat2] = useState("null");
+  const [moodScore, setMoodScore] = useState("null");
+  const [rightScore, setRightScore] = useState("null");
 
   const firstUserChatChange = ({ target: { value } }) => {
     setUserChat(value);
