@@ -152,7 +152,7 @@ function App() {
   const resultSubmit = async () => {
     console.log("submit");
     const { data } = await axios.post(
-      "https://https://limitless-ridge-83393.herokuapp.com/backend/makemetric",
+      "http://limitless-ridge-83393.herokuapp.com/backend/makemetric",
       {
         headers: {
           "Access-Contorl-Allow-Origin": "*",
