@@ -117,7 +117,7 @@ function App() {
 
   const firstUserChatSubmit = async event => {
     event.preventDefault();
-    const url = "http://52.79.149.180:443/AI/sendMessage/";
+    const url = "https://52.79.149.180:443/AI/sendMessage/";
     try {
       let comment;
       const { data } = await fetch(url, {
@@ -188,7 +188,7 @@ function App() {
       <Header>
         <h1>심심이 평가표</h1>
         <h3>
-          심심이는 직장, 가정의 고충을 잘 들어주는 챗봇입니다
+          심심이는 직장이나 사회활동의 고충을 잘 들어주는 챗봇입니다
           <br />
           관련한 내용으로 대화를 해보시고 평가부탁드립니다.
         </h3>
