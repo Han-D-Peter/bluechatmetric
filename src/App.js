@@ -117,7 +117,7 @@ function App() {
 
   const firstUserChatSubmit = async event => {
     event.preventDefault();
-    const url = "https://bluechatbot.ml/AI/sendmessage/";
+    const url = "https://bluechatbot.ml/AI/sendMessage/";
     try {
       let comment;
       const { data } = await fetch(url, {
@@ -125,6 +125,7 @@ function App() {
         body: JSON.stringify({ msg: userChat }),
         headers: {
           "Content-Type": "application/json",
+          "Access-Contorl-Allow-Origin": "*",
         },
       })
         .then(response => response.json())
@@ -147,7 +148,7 @@ function App() {
 
   const secondUserChatSubmit = async event => {
     event.preventDefault();
-    const url = "https://bluechatbot.ml/AI/sendmessage/";
+    const url = "https://bluechatbot.ml/AI/sendMessage/";
     try {
       const { data } = await axios.post(url, {
         headers: {},
