@@ -30,6 +30,7 @@ const InputContainer = styled.div``;
 
 const ContainerInput = styled.input`
   border: 0;
+  width: ${props => (props.length > 8 ? 70 + props.length * 10 : 150)}px;
   border-bottom: 1px solid #555;
   background: transparent;
   padding: 8px 0 5px 0;
@@ -111,9 +112,12 @@ function App() {
   const [moodScore, setMoodScore] = useState(null);
   const [rightScore, setRightScore] = useState(null);
   const [submitComple, setSubmitComple] = useState(false);
+  const [inputLength1, setInputLength1] = useState(0);
+  const [inputLength2, setInputLength2] = useState(0);
 
   const firstUserChatChange = ({ target: { value } }) => {
     setUserChat(value);
+    setInputLength1(value.length);
   };
 
   const firstUserChatSubmit = async event => {
@@ -145,6 +149,7 @@ function App() {
 
   const secondUserChatChange = ({ target: { value } }) => {
     setUserChat2(value);
+    setInputLength2(value.length);
   };
 
   const secondUserChatSubmit = async event => {
@@ -203,6 +208,7 @@ function App() {
                 type="text"
                 required=""
                 onChange={firstUserChatChange}
+                length={inputLength1}
               />
               <Button>대답받기</Button>
             </InputContainer>
@@ -215,6 +221,7 @@ function App() {
                 type="text"
                 required=""
                 onChange={secondUserChatChange}
+                length={inputLength2}
               />
               <Button>대답받기</Button>
             </InputContainer>
