@@ -148,10 +148,12 @@ function App() {
 
   const secondUserChatSubmit = async event => {
     event.preventDefault();
-    const url = "/api";
+    const url = "https://bluechatbot.ml/AI/sendmessage/";
     try {
       const { data } = await axios.post(url, {
-        headers: {},
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
         msg: userChat2,
       });
       setBotChat2(data[2]);
