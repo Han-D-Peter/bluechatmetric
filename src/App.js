@@ -125,7 +125,6 @@ function App() {
         body: JSON.stringify({ msg: userChat }),
         headers: {
           "Content-Type": "application/json",
-          "Access-Contorl-Allow-Origin": "*",
         },
       })
         .then(response => response.json())
@@ -151,9 +150,7 @@ function App() {
     const url = "https://bluechatbot.ml/AI/sendmessage/";
     try {
       const { data } = await axios.post(url, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
+        headers: {},
         msg: userChat2,
       });
       setBotChat2(data[2]);
