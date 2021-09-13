@@ -151,9 +151,7 @@ function App() {
     const url = "/api";
     try {
       const { data } = await axios.post(url, {
-        headers: {
-          "Access-Contorl-Allow-Origin": "*",
-        },
+        headers: {},
         msg: userChat2,
       });
       setBotChat2(data[2]);
@@ -167,9 +165,7 @@ function App() {
     const { data } = await axios.post(
       "https://limitless-ridge-83393.herokuapp.com/backend/makemetric",
       {
-        headers: {
-          "Access-Contorl-Allow-Origin": "*",
-        },
+        headers: {},
         data: {
           user_first: userChat,
           bot_first: botChat,
