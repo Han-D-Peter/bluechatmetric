@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target: "https://52.79.149.180:443/AI/sendMessage/",
+      target: "https://bluechatbot.ml/AI/sendmessage/",
       changeOrigin: true,
       pathRewrite: {
         "^/api": "", // 하위 url 초기화
