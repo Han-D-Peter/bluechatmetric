@@ -4,8 +4,7 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target:
-        "http://ec2-54-180-203-163.ap-northeast-2.compute.amazonaws.com/AI/sendMessage/",
+      target: "http://52.79.149.180:443/AI/sendMessage/",
       changeOrigin: true,
       pathRewrite: {
         "^/api": "", // 하위 url 초기화

@@ -11,6 +11,8 @@ const Header = styled.div`
   background-color: black;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
 `;
 
@@ -115,8 +117,7 @@ function App() {
 
   const firstUserChatSubmit = async event => {
     event.preventDefault();
-    const url =
-      "http://ec2-54-180-203-163.ap-northeast-2.compute.amazonaws.com/AI/sendMessage/";
+    const url = "http://52.79.149.180:443/AI/sendMessage/";
     try {
       let comment;
       const { data } = await fetch(url, {
@@ -186,6 +187,12 @@ function App() {
     <>
       <Header>
         <h1>심심이 평가표</h1>
+        <h3>
+          심심이는 직장, 가정의 고충을 잘 들어주는 챗봇입니다
+          <br />
+          관련한 내용으로 대화를 해보시고 평가부탁드립니다.
+        </h3>
+        <br />
       </Header>
       <Body>
         <form onSubmit={firstUserChatSubmit}>
