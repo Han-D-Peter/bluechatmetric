@@ -117,7 +117,7 @@ function App() {
 
   const firstUserChatSubmit = async event => {
     event.preventDefault();
-    const url = "https://52.79.149.180:443/AI/sendMessage/";
+    const url = "https://bluechatbot.ml/AI/sendmessage/";
     try {
       let comment;
       const { data } = await fetch(url, {
