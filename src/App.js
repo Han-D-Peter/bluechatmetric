@@ -30,6 +30,7 @@ const InputContainer = styled.div``;
 
 const ContainerInput = styled.input`
   border: 0;
+  width: ${props => (props.length > 8 ? 70 + props.length * 10 : 150)}px;
   border-bottom: 1px solid #555;
   background: transparent;
   padding: 8px 0 5px 0;
@@ -110,13 +111,18 @@ function App() {
   const [botChat2, setBotChat2] = useState(null);
   const [moodScore, setMoodScore] = useState(null);
   const [rightScore, setRightScore] = useState(null);
+  const [submitComple, setSubmitComple] = useState(false);
+  const [inputLength1, setInputLength1] = useState(0);
+  const [inputLength2, setInputLength2] = useState(0);
 
   const firstUserChatChange = ({ target: { value } }) => {
     setUserChat(value);
+    setInputLength1(value.length);
   };
 
   const firstUserChatSubmit = async event => {
     event.preventDefault();
+
     const url = "https://bluechatbot.ml/AI/sendmessage/";
     // patch
     try {
@@ -145,16 +151,15 @@ function App() {
 
   const secondUserChatChange = ({ target: { value } }) => {
     setUserChat2(value);
+    setInputLength2(value.length);
   };
 
   const secondUserChatSubmit = async event => {
     event.preventDefault();
-    const url = "/api";
+    const url = "https://bluechatbot.ml/AI/sendMessage/";
     try {
       const { data } = await axios.post(url, {
-        headers: {
-          "Access-Contorl-Allow-Origin": "*",
-        },
+        headers: {},
         msg: userChat2,
       });
       setBotChat2(data[2]);
@@ -165,12 +170,11 @@ function App() {
 
   const resultSubmit = async () => {
     console.log("submit");
+    setSubmitComple(true);
     const { data } = await axios.post(
       "https://limitless-ridge-83393.herokuapp.com/backend/makemetric",
       {
-        headers: {
-          "Access-Contorl-Allow-Origin": "*",
-        },
+        headers: {},
         data: {
           user_first: userChat,
           bot_first: botChat,
@@ -195,84 +199,90 @@ function App() {
         </h3>
         <br />
       </Header>
-      <Body>
-        <form onSubmit={firstUserChatSubmit}>
-          <InputContainer>
-            <ContainerInput
-              placeholder="첫번째 문장"
-              type="text"
-              required=""
-              onChange={firstUserChatChange}
-            />
-            <Button>대답받기</Button>
-          </InputContainer>
-        </form>
-        <Botanswer>{botChat ? `심심이: ${botChat}` : null}</Botanswer>
-        <form onSubmit={secondUserChatSubmit}>
-          <InputContainer>
-            <ContainerInput
-              placeholder="두번째 문장"
-              type="text"
-              required=""
-              onChange={secondUserChatChange}
-            />
-            <Button>대답받기</Button>
-          </InputContainer>
-        </form>
-        <Botanswer>{botChat2 ? `심심이: ${botChat2}` : null}</Botanswer>
-        {botChat && botChat2 ? (
-          <>
-            <div>문장이 말이 되는가?</div>
-            <ButtonBox>
-              <div>
+      {submitComple ? (
+        <Header>평가에 참여 해주셔서 감사합니다.</Header>
+      ) : (
+        <Body>
+          <form onSubmit={firstUserChatSubmit}>
+            <InputContainer>
+              <ContainerInput
+                placeholder="첫번째 문장"
+                type="text"
+                required=""
+                onChange={firstUserChatChange}
+                length={inputLength1}
+              />
+              <Button>대답받기</Button>
+            </InputContainer>
+          </form>
+          <Botanswer>{botChat ? `심심이: ${botChat}` : null}</Botanswer>
+          <form onSubmit={secondUserChatSubmit}>
+            <InputContainer>
+              <ContainerInput
+                placeholder="두번째 문장"
+                type="text"
+                required=""
+                onChange={secondUserChatChange}
+                length={inputLength2}
+              />
+              <Button>대답받기</Button>
+            </InputContainer>
+          </form>
+          <Botanswer>{botChat2 ? `심심이: ${botChat2}` : null}</Botanswer>
+          {botChat && botChat2 ? (
+            <>
+              <div>문장이 말이 되는가?</div>
+              <ButtonBox>
+                <div>
+                  <Input
+                    type="radio"
+                    id="select"
+                    name="shop"
+                    onChange={e => setMoodScore("1")}
+                  />
+                  <Label htmlFor="select">예</Label>
+                </div>
+                <div>
+                  <Input
+                    type="radio"
+                    id="select2"
+                    name="shop"
+                    onChange={e => setMoodScore("0")}
+                  />
+                  <Label htmlFor="select2">아니오</Label>
+                </div>
+              </ButtonBox>
+
+              <div>상황에 적합하게 대답하는가?</div>
+              <ButtonBox>
                 <Input
                   type="radio"
-                  id="select"
-                  name="shop"
-                  onChange={e => setMoodScore("1")}
+                  id="select3"
+                  name="shop2"
+                  onChange={e => setRightScore("1")}
                 />
-                <Label htmlFor="select">예</Label>
-              </div>
-              <div>
+                <Label htmlFor="select3">예</Label>
+
                 <Input
                   type="radio"
-                  id="select2"
-                  name="shop"
-                  onChange={e => setMoodScore("0")}
+                  id="select4"
+                  name="shop2"
+                  onChange={e => setRightScore("0")}
                 />
-                <Label htmlFor="select2">아니오</Label>
-              </div>
-            </ButtonBox>
-
-            <div>상황에 적합하게 대답하는가?</div>
-            <ButtonBox>
-              <Input
-                type="radio"
-                id="select3"
-                name="shop2"
-                onChange={e => setRightScore("1")}
-              />
-              <Label htmlFor="select3">예</Label>
-
-              <Input
-                type="radio"
-                id="select4"
-                name="shop2"
-                onChange={e => setRightScore("0")}
-              />
-              <Label htmlFor="select4">아니오</Label>
-            </ButtonBox>
-          </>
-        ) : null}
-        {userChat &&
-        userChat &&
-        botChat &&
-        botChat2 &&
-        moodScore &&
-        rightScore ? (
-          <SubmitButton onClick={resultSubmit}>제출</SubmitButton>
-        ) : null}
-      </Body>
+                <Label htmlFor="select4">아니오</Label>
+              </ButtonBox>
+            </>
+          ) : null}
+          {userChat &&
+          userChat &&
+          botChat &&
+          botChat2 &&
+          moodScore &&
+          rightScore ? (
+            <SubmitButton onClick={resultSubmit}>제출</SubmitButton>
+          ) : null}
+        </Body>
+      )}
     </>
   );
 }

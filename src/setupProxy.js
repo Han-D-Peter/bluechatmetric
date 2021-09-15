@@ -4,6 +4,7 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
+
       target: "https://bluechatbot.ml/AI/sendmessage/",
       changeOrigin: true,
       pathRewrite: {
